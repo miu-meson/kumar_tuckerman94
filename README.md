@@ -35,12 +35,13 @@ $$
 and the differential operator $\nabla^2_H$ by the algebraic one $-k^2$
 
 The complete linear stability problem reads
-$$
-[\partial_t - \nu_1 (\partial_{zz} - k^2)](\partial_zz - k^2) w_1 = 0, \text{ for } -h_1 \leq z < 0
-$$
 
 $$
-[\partial_t - \nu_2 (\partial_{zz} - k^2)](\partial_zz - k^2) w_2 = 0, \text{ for } 0 \leq z < h_2
+\begin{aligned}
+[\partial_t - \nu_1 (\partial_{zz} - k^2)](\partial_zz - k^2) w_1 = 0, &&\text{ for } -h_1 \leq z < 0
+\\
+[\partial_t - \nu_2 (\partial_{zz} - k^2)](\partial_zz - k^2) w_2 = 0, &&\text{ for } 0 \leq z < h_2
+\end{aligned}
 $$
 
 The boundary conditions at the two plates are given by
