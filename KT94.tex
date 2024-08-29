@@ -1,0 +1,472 @@
+\documentclass[prfluids]{revtex4-2}
+
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{tgheros}
+\usepackage{helvet}
+\usepackage{upgreek}
+\usepackage[paper=A4, DIV=10]{typearea}
+
+\renewcommand*\familydefault{\sfdefault}
+
+
+\renewcommand*{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\paramF  }{\mathsf{\color{red}F}}
+\newcommand{\paramOm}{        {\color{red}\omega}}
+
+% \newcommand{\zeroplu}{\text{O}^+}
+% \newcommand{\zeromin}{\text{O}^-}
+% \newcommand{\oneplus}{\text{I}^+}
+% \newcommand{\onemins}{\text{I}^-}
+% \newcommand{\twoplus}{\text{II}^+}
+% \newcommand{\twomins}{\text{II}^-}
+% \newcommand{\treplus}{\text{III}^+}
+% \newcommand{\tremins}{\text{III}^-}
+% \newcommand{\Qplus}[1]{\text{Q}^{+}_{#1}}
+% \newcommand{\Qmins}[1]{\text{Q}^{-}_{#1}}
+
+\newcommand{\zeroplu}{\text{O}^+}
+\newcommand{\zeromin}{\text{O}^-}
+\newcommand{\oneplus}{\text{I}^+}
+\newcommand{\onemins}{\text{I}^-}
+\newcommand{\twoplus}{\text{II}^+}
+\newcommand{\twomins}{\text{II}^-}
+\newcommand{\treplus}{\text{III}^+}
+\newcommand{\tremins}{\text{III}^-}
+\newcommand{\Qplus}[1]{\text{Q}^{+}_{#1}}
+\newcommand{\Qmins}[1]{\text{Q}^{-}_{#1}}
+
+
+\begin{document}
+\doublespacing
+
+\section*{Linear stability analysis}
+
+\subsubsection*{The approach of Kumar \& Tuckerman~\cite{Kumar_1994}}
+
+We briefly describe an implementation of Kumar \& Tuckerman~\cite{Kumar_1994}.
+We consider two layers of immiscible and incompressible fluids: fluid 1 (density
+$\rho_1$, viscosity $\mu_1$) is defined between $z=z_0$ and $z=z_1$; fluid 2
+(density $\rho_2$, viscosity $\mu_2$) is defined between $z=z_1$ and $z=z_2$.
+The interface between fluids 1 and 2 is $\zeta$ (surface tension coefficient
+$\gamma$). The equations of motion are given by
+\begin{subequations}
+  \begin{align}
+    \label{eq1a}
+    \rho_j \left[
+      \partial_j + (\vec{U}_j\cdot\nabla) \right]\vec{U}_j &=
+    -\nabla(P_j) + \mu_j\nabla^2\vec{U}_j
+    - \rho_j G(t) \vec{e}_z
+    \\
+    \label{eq1b}
+    \nabla\cdot\vec{U}_j &= 0
+  \end{align}
+\end{subequations}
+where $\vec{U}=(u_j,v_j,w_j)$ and $G(t)=g (1 + \paramF\cos(\omega t))$.
+
+We will consider a horizontally infinite plane, whose normal modes are
+trigonometric functions, e.g. $\sin (\vec{k}\cdot\vec{x} )$. The horizontal wave
+number $\vec{k}=k_x\vec{i} + k_y\vec{j}$, where $k^2 = k_x^2 + k_y^2$, can take
+any real value. We can expand the fields in terms of horizontal normal modes of
+the Laplacian since the form of the equations is such that each mode is
+decoupled from the others. This is the approach followed by Benjamin \&
+Ursell~\cite{Benjamin1954} for the ideal fluid case, and it remains valid for
+the viscous fluid equations in the present case. We now simply replace 
+\begin{subequations}
+  \begin{align}
+    \label{eq2a}
+    w_j^*(\vec{x},z,t) &= \sin(\vec{k}\cdot\vec{x}) w_j (z,t) 
+    \\
+    \label{eq2b}
+    \zeta^*(\vec{x},t) &= \sin(\vec{k}\cdot\vec{x}) \zeta (t) 
+  \end{align}
+\end{subequations}
+and the differential operator $\nabla^2_H$ by the algebraic one $-k^2$
+
+The complete linear stability problem reads
+\begin{subequations}
+  \begin{align}
+    \label{eq3a}
+    [\partial_t - \nu_1 (\partial_{zz} - k^2)](\partial_zz - k^2) w_1 &= 0, && \text{ for } -h_1 \leq z < 0
+    \\
+    \label{eq3b}
+    [\partial_t - \nu_2 (\partial_{zz} - k^2)](\partial_zz - k^2) w_2 &= 0, && \text{ for } 0 \leq z < h_2
+  \end{align}
+  The boundary conditions at the two plates are given by
+  \begin{align}
+    \label{eq3c}
+    w_1 &= 0, && \text{ for } z = -h_1
+    \\
+    \label{eq3d}
+    w_2 &= 0, && \text{ for } z = h_2
+    \\
+    \label{eq3e}
+    \partial_z w_1 &= 0, && \text{ for } z = -h_1
+    \\
+    \label{eq3f}
+    \partial_z w_2 &= 0, && \text{ for } z = h_2
+  \end{align}
+  and the conditions at the interface are
+  \begin{align}
+    \label{eq3g}
+    w_1 - w_2 &= 0,
+    \\
+    \label{eq3h}
+    \partial w_1 - \partial w_2 &= 0,
+    \\
+    \label{eq3i}
+    \nu_1 (\partial_{zz} + k^2) w_1 - \nu_2 (\partial_{zz} + k^2) w_2 &= 0,
+    \\
+    \label{eq3j}
+    [\rho_1 \partial_t - \nu_1 (\partial_{zz} - k^2) + 2 \nu_1 k^2] \partial_z w_1
+    -[\rho_2 \partial_t - \nu_2 (\partial_{zz} - k^2) + 2 \nu_2 k^2] \partial_z w_2
+    &= - [(\rho_1-\rho_2)g(t) - \sigma k^2] k^2 \zeta,
+  \end{align}
+  The kinematic condition at the interface reads
+  \begin{align}
+    \label{eq3k}
+    \partial \zeta - w  \vert_{z=0} = 0
+  \end{align}
+\end{subequations}
+The above set of equations \eqref{eq3a}-\eqref{eq3k} constitute the full
+hydrodynamic system, which we shall refer to as FHS.
+
+In standard fashion, we search for solutions of Floquet form, i.e.,
+$w_j(t)=w_j(t+nT)$ with integer $n$ and $T=2\pi/\omega$, 
+\begin{align}
+  \label{eq4}
+  w_j (z,t) &= e^{(i\alpha+\lambda)t} \tilde{w}_j (z, t \mod T)
+\end{align}
+where $i\alpha+\lambda$ is the Floquet exponent and
+$e^{(i\alpha + \lambda)T}$ is the Floquet multiplier. The function is
+periodic in time with period $T$, and may therefore be expanded in the
+Fourier series
+\begin{align}
+  \label{eq5}
+  \tilde{w}_j (z, t \mod T) = \sum_{n=-\infty}^{\infty} w_{jn}(z) e^{in\omega t}
+\end{align}
+The Floquet multipliers are eigenvalues of a real mapping: this implies that
+they are either real or complex-conjugate pairs. In addition, $\alpha$ is
+defined only modulo $\omega$, since integer multiples of $\omega$ may be
+absorbed into $\tilde{w}_j$. Hence, we restrict consideration to the range $0
+\leq \alpha < \omega$. The two cases $\alpha = 0$ and $\alpha = \omega/2$ are
+called harmonic and subharmonic, respectively, and correspond to positive or
+negative real Floquet multipliers, whereas $0 < \alpha < \omega/2$ corresponds
+to a complex Floquet multiplier.
+
+The relationship between Fourier modes with positive and negative $n$ depends on
+the value of $\alpha$. In the harmonic and subharmonic cases, $\tilde{w}_j$ must
+obey reality conditions $w_{j,-n} = w_{j,n}^*$ (harmonic) or $w_{j,-n} =
+w_{j,n-1}^*$ (harmonic) (subharmonic), so that the series may be rewritten in
+terms only of non-negative Fourier indices. Only the harmonic and subharmonic
+cases are relevant to this linear stability analysis : complex Floquet
+multipliers are always of magnitude less than or equal to one, and hence do not
+correspond to growing solutions. 
+
+The interface position is expanded in the same way:
+\begin{subequations}
+  \begin{align}
+    \label{eq6a}
+    \zeta(t) &= e^{(i\alpha+\lambda)t} \tilde{\zeta} (t \mod 2\pi/\omega)
+    \\
+    \label{eq6b}
+    \tilde{\zeta} (t \mod 2\pi/\omega) &= \sum_{n=-\infty}^{\infty} \zeta_{n}(z) e^{in\omega t}
+  \end{align}
+\end{subequations}
+with the same reality conditions as for $w_j$.
+
+Equations \eqref{eq3g} and \eqref{eq3k} imply
+\begin{align}
+  \label{eq7}
+  w_{1n} (z=0) = w_{2n} (z=0) = [i(\alpha + n\omega) + \lambda] \zeta_n
+\end{align}
+Also, \eqref{eq3a} and \eqref{eq3b} imply
+\begin{subequations}
+  \begin{align}
+    \label{eq8a}
+    [i(\alpha + n\omega) + \lambda - \nu_1 (\partial_{zz} - k^2)](\partial_zz - k^2) w_{1n} &= 0, && \text{ for } -h_1 \leq z < 0
+    \\
+    \label{eq8b}
+    [i(\alpha + n\omega) + \lambda - \nu_2 (\partial_{zz} - k^2)](\partial_zz - k^2) w_{2n} &= 0, && \text{ for } 0 \leq z < h_2
+  \end{align}
+\end{subequations}
+with solutions
+\begin{align}
+  \label{eq9}
+  w_{jn}(z) &=
+  \left\lbrace\begin{matrix}
+    a_{jn}e^{kz} &+& b_{jn}e^{-kz}
+    &&&&& \text{ for } &\nu_j = 0 
+    \\
+    a_{jn}e^{kz}    &+& b_{jn}e^{-kz}&+&
+    c_{jn}e^{q_{jn}z} &+& d_{jn}e^{-q_{jn}z}
+    & \text{ for } &\lambda + i (\alpha + n) \neq 0 
+    \\
+    a_{jn}e^{kz}  &+& b_{jn}e^{-kz}&+&
+    c_{jn}ze^{kz} &+& d_{jn}ze^{-kz}
+    & \text{ for } & \lambda + i (\alpha + n) = 0 \\
+  \end{matrix}\right.
+\end{align}
+where 
+\begin{align}
+  \label{eq10}
+  q^2_{jn} = k^2 + \frac{i(\alpha + n\omega) + \lambda}{\nu_j}
+\end{align}
+with the convention that $q^2_{jn}$ is the root with positive real part.
+
+Introducing these expansions into the full hydrodynamic system, we need to solve
+a linear equation system for each Fourier mode to find the coefficients $a_{jn}$
+to $d_{jn}$. 
+Having solved the coefficients, we are left with the pressure jump
+condition to couple the different modes
+\begin{align}
+  \label{eq11}
+  \Delta [\rho\lbrace \lambda + i (\alpha + n\omega)\rbrace + 3 \mu k^2] \partial_z w_n -
+  \Delta\mu\partial_{zzz} w_n +
+  [\Delta\rho g - \gamma k^2] k^2 \zeta_n
+  &= \frac{\Delta\rho k^2}{2} a (\zeta_{n+1}+\zeta_{n-1})
+\end{align}
+where $\partial_z w$ reads
+\begin{align}
+  \label{eq12}
+  \partial_zw_{jn} &=
+  \left\lbrace\begin{array}{rrrrrrrrrr}
+    a_{jn}ke^{kz} &-& b_{jn}ke^{-kz}
+    &&&&& \text{ for } &\nu_j = 0 \\
+    a_{jn}ke^{kz}    &-& b_{jn}ke^{-kz}&+&
+    c_{jn}q_{jn} e^{q_{jn}z} &-& d_{jn}q_{jn} e^{-q_{jn}z}
+    & \text{ for } &\lambda + i (\alpha + n) \neq 0 \\
+    a_{jn}ke^{kz}  &-& b_{jn}ke^{-kz}&+&
+    c_{jn}(1 + kz)e^{kz} &+& d_{jn}(1 - kz)e^{-kz}
+    & \text{ for } & \lambda + i (\alpha + n) = 0 \\
+  \end{array}\right.
+\end{align}
+and $\partial_{zzz} w$ reads
+\begin{align}
+  \label{eq13}
+  \partial_{zzz}w_{jn} &=
+  \left\lbrace\begin{array}{rrrrrrrrrr}
+    a_{jn}k^3e^{kz}    &-& b_{jn}k^3e^{-kz}&+&
+    c_{jn}q_{jn}^3e^{q_{jn}z} &-& d_{jn}q_{jn}^3e^{-q_{jn}z}
+    & \text{ for } &\lambda + i (\alpha + n) \neq 0 \\
+    a_{jn}k^3e^{kz}  &-& b_{jn}k^3e^{-kz}&+&
+    c_{jn}(3k^2 + k^3z)e^{kz} &+& d_{jn}(3k^2 - k^3z)e^{-kz}
+    & \text{ for } & \lambda + i (\alpha + n) = 0 \\
+  \end{array}\right.
+\end{align}
+such that equation \eqref{eq11} can be written as
+\begin{eqnarray}
+  A_n \zeta_n &=& a (\zeta_{n+1}+\zeta_{n-1}).
+\end{eqnarray}
+
+Finally, taking into account the reality conditions, $\zeta_{-1}=\zeta_{1}^*$
+(harmonic) and $\zeta_{-1}=\zeta_{0}^*$ (sub-harmonic), and truncating the
+Fourier series to $0 \leq n \leq N$, we obtain a (2N+1)x(2N+1) eigenvalue
+problem $\textbf{A}\boldsymbol{\zeta}=a\mathbf{B}\boldsymbol{\zeta}$,
+\begin{eqnarray}
+  \underbrace{\left[\begin{matrix}
+    \begin{matrix}
+    \Re(A_0) & -\Im(A_0) \\
+    \Im(A_0) &  \Re(A_0)
+    \end{matrix}
+    \\&
+    \begin{matrix}
+      \Re(A_1) & -\Im(A_1) \\
+      \Im(A_1) &  \Re(A_1)
+    \end{matrix}
+    \\&&
+    \ddots
+    \\&&&
+    \begin{matrix}
+      \Re(A_N) & -\Im(A_N) \\
+      \Im(A_N) &  \Re(A_N)
+    \end{matrix}
+  \end{matrix}\right]}_{\textbf{A}}
+  \underbrace{
+  \left[\begin{matrix}
+    \Re(\zeta_0) \\ \Im(\zeta_0) \\
+    \Re(\zeta_1) \\ \Im(\zeta_1) \\ \vdots \\
+    \Re(\zeta_N) \\ \Im(\zeta_N)
+  \end{matrix}\right]
+  }_{\boldsymbol{\zeta}}
+   = a\textbf{B}
+   \underbrace{
+  \left[\begin{matrix}
+    \Re(\zeta_0) \\ \Im(\zeta_0) \\
+    \Re(\zeta_1) \\ \Im(\zeta_1) \\ \vdots \\
+    \Re(\zeta_N) \\ \Im(\zeta_N)
+  \end{matrix}\right]
+  }_{\boldsymbol{\zeta}}
+\end{eqnarray}
+where the structure of $\textbf{B}$ depends on $\alpha$
+\begin{eqnarray}
+\textbf{B} =
+\left[\begin{matrix}
+  0 &0 &2 &0 &0 & 0 &\cdots \\
+  0 &0 &0 &0 &0 & 0 &\cdots \\
+  1 &0 &0 &0 &1 & 0 &\cdots \\
+  0 &1 &0 &0 &0 & 1 &\cdots \\
+  0 &0 &1 &0 &0 & 0 &\cdots \\
+  \vdots & \vdots & \vdots & \vdots & \vdots &\vdots & \ddots
+\end{matrix}\right]
+\text{ (harmonic) }
+\quad\quad
+\textbf{B} =
+\left[\begin{matrix}
+  1 &0 &1 &0 &0 & 0 &\cdots \\
+  0 &-1&0 &1 &0 & 0 &\cdots \\
+  1 &0 &0 &0 &1 & 0 &\cdots \\
+  0 &1 &0 &0 &0 & 1 &\cdots \\
+  0 &0 &1 &0 &0 & 0 &\cdots \\
+  \vdots & \vdots & \vdots & \vdots & \vdots &\vdots & \ddots
+\end{matrix}\right]
+\text{ (sub-harmonic) }.
+\end{eqnarray}
+
+
+\newpage
+\clearpage
+\KOMAoptions{paper={landscape}}
+\recalctypearea
+
+\paragraph{Viscous fluids for $\sigma + i(\alpha + \omega n)\neq0$ (finite depth)}
+
+\begin{footnotesize}\begin{eqnarray*}
+  \left[\begin{array}{r r r r r r r r }
+    \oneplus & \onemins  & \Qplus{11} & \Qmins{11}
+    \\
+    \oneplus & \onemins  & \Qplus{11} & \Qmins{11} & -\oneplus & -\onemins  &
+    -\Qplus{21} & -\Qmins{21}
+    \\
+    k\oneplus & -k\onemins  & q_1\Qplus{11} & -q_1\Qmins{11} &
+    -k\oneplus & k\onemins  & -q_2\Qplus{21} & q_2\Qmins{21}
+    \\
+    2k^2\mu_1\oneplus & 2k^2\mu_1\onemins  & (k^2+q_1^2)\mu_1\Qplus{11} &
+    (k^2+q_1^2)\mu_1\Qmins{11} &
+    -2k^2\mu_2\oneplus & -2k^2\mu_2\onemins  & -(k^2+q_2^2)\mu_2\Qplus{21} &
+    -(k^2+q_2^2)\mu_2\Qmins{21}
+    \\
+    \zeroplu & \zeromin  & \Qplus{10} & \Qmins{10}
+    \\
+    k\zeroplu & -k\zeromin  & q_1\Qplus{10} & -q_1\Qmins{10}
+    \\
+    &&&& \twoplus & \twomins  & \Qplus{22} & \Qmins{22}
+    \\
+    &&&& k\twoplus & -k\twomins  & q_2\Qplus{22} & -q_2\Qmins{22}
+  \end{array}\right]
+  \left[\begin{matrix}
+    a_1 \\ b_1 \\ c_1 \\ d_1 \\
+    a_2 \\ b_2 \\ c_2 \\ d_2
+  \end{matrix}\right]
+  =
+  \left[\begin{matrix}
+    \sigma + i(\alpha + \omega n) \\ 0 \\ 0 \\ 0
+    \\ 0 \\ 0 \\ 0 \\ 0
+  \end{matrix}\right]
+  \quad\text{ with }\quad \text{Q}^\pm_{ij} \equiv \exp{(\pm q_{in} z_j)}
+\end{eqnarray*}\end{footnotesize}
+
+\paragraph{Viscous fluids for $\sigma + i(\alpha + \omega n)=0$ (finite depth)}
+
+\begin{footnotesize}\begin{eqnarray*}
+  \left[\begin{array}{r r r r r r r r }
+         \oneplus &   \onemins &      z_1\oneplus &      z_1\onemins \\
+         \oneplus &   \onemins &      z_0\oneplus &      z_0\onemins &
+         -\oneplus &  -\onemins &     -z_0\oneplus &     -z_0\onemins \\
+         k\oneplus & -k\onemins & (1+kz_0)\oneplus & (1-kz_0)\onemins &
+        -k\oneplus &  k\onemins &-(1+kz_0)\oneplus &-(1-kz_0)\onemins \\
+      2k\mu_1        \oneplus & 2k^2\mu_1         \onemins &
+     (2k^2z_0 + 2k)\mu_1 \oneplus & (2k^2z_0 - 2k) \mu_1\onemins &
+     -2k^2\mu_2         \oneplus & -2k^2\mu_2         \onemins &
+     -(2k^2z_0 + 2k)\mu_2 \oneplus & -(2k^2z_0 - 2k) \mu_2\onemins \\
+         \zeroplu &   \zeromin &      z_0\zeroplu &      z_0\zeromin \\
+        k\zeroplu & -k\zeromin & (1+kz_0)\zeroplu & (1-kz_0)\zeromin \\
+    &&&& \twoplus &   \twomins &      z_2\twoplus &      z_2\twomins \\
+    &&&&k\twoplus & -k\twomins & (1+kz_2)\twoplus & (1-kz_2)\twomins 
+  \end{array}\right]
+  \left[\begin{matrix}
+    a_1 \\ b_1 \\ c_1 \\ d_1 \\
+    a_2 \\ b_2 \\ c_2 \\ d_2
+  \end{matrix}\right]
+  =
+  \left[\begin{matrix}
+    0 \\ 0 \\ 0 \\ 0
+    \\ 0 \\ 0 \\ 0 \\ 0
+  \end{matrix}\right]
+\end{eqnarray*}\end{footnotesize}
+
+
+\paragraph{Viscous fluids for $\sigma + i(\alpha + \omega n)\neq0$ (deep layers)}
+
+\begin{footnotesize}\begin{eqnarray*}
+  \left[\begin{array}{r r r r r r r r }
+    \oneplus & \Qplus{11}
+    \\
+    \oneplus & \Qplus{11} & -\onemins & -\Qmins{21}
+    \\
+    k\oneplus & q_1\Qplus{11} & k\onemins &q_2\Qmins{21}
+    \\
+    2k^2\mu_1\oneplus & (k^2+q_1^2)\mu_1\Qplus{11} &
+    -2k^2\mu_2\onemins  & -(k^2+q_2^2)\mu_2\Qmins{21}
+  \end{array}\right]
+  \left[\begin{matrix}
+    a_1 \\ c_1 \\ b_2 \\ d_2
+  \end{matrix}\right]
+  =
+  \left[\begin{matrix}
+    \sigma + i(\alpha + \omega n) \\ 0 \\ 0 \\ 0
+  \end{matrix}\right]
+  \quad\text{ with }\quad \text{Q}^\pm_{ij} \equiv \exp{(\pm q_{in} z_j)}
+\end{eqnarray*}\end{footnotesize}
+
+\paragraph{Viscous fluids for $\sigma + i(\alpha + \omega n)=0$ (deep layers)}
+
+\begin{footnotesize}\begin{eqnarray*}
+  \left[\begin{array}{r r r r r r r r }
+    \oneplus &   z_1\oneplus \\
+    \oneplus &   z_0\oneplus & -\onemins & -z_0\onemins \\
+    k\oneplus & (1+kz_0)\oneplus & k\onemins & -(1-kz_0)\onemins \\
+     2k^2\mu_1 \oneplus & (2k^2z_0 + 2k)\mu_1 \oneplus & 
+    -2k^2\mu_2 \onemins & -(2k^2z_0 - 2k) \mu_2\onemins \\
+  \end{array}\right]
+  \left[\begin{matrix}
+    a_1 \\ c_1 \\ b_2 \\ d_2
+  \end{matrix}\right]
+  =
+  \left[\begin{matrix}
+    0 \\ 0 \\ 0 \\ 0
+  \end{matrix}\right]
+\end{eqnarray*}\end{footnotesize}
+
+
+\paragraph{Ideal fluids}
+\begin{footnotesize}\begin{eqnarray}
+  \left[\begin{array}{r r r r}
+    \oneplus & \onemins  &                        \\    
+    \zeroplu & \zeromin  &                        \\    
+             &           &  \twoplus &  \twomins  \\
+    \oneplus & \onemins  & -\oneplus & -\onemins
+  \end{array}\right]
+  \left[\begin{matrix}
+    a_1 \\ b_1 \\ a_2 \\ b_2
+  \end{matrix}\right]
+  =
+  \left[\begin{matrix}
+    \sigma + i(\alpha + \omega n) \\ 0 \\ 0 \\ 0
+  \end{matrix}\right]
+  \quad\text{ with }\quad
+  \text{O}^\pm \equiv \exp^{(\pm kz_0)}, \quad
+  \text{I}^\pm \equiv \exp^{(\pm kz_1)}, \quad
+  \text{II}^\pm \equiv \exp^{(\pm kz_2)}.
+\end{eqnarray}\end{footnotesize}
+
+
+\bibliographystyle{plain}
+\bibliography{../../biblio/faramix}
+
+\end{document}
