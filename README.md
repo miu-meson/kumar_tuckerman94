@@ -12,7 +12,7 @@ $$
 $$
 
 $$
-\tag{2}
+\label{2}
 \nabla\cdot\vec{U}_j = 0
 $$
 
