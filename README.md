@@ -8,18 +8,12 @@ interface between fluids 1 and 2 is $\zeta$ (surface tension coefficient
 $\gamma$). The equations of motion are given by
 
 $$
-\tag{1.a}
-\label{eq1a}
-\rho_j \left[\partial_t + (\vec{U}_j\cdot\nabla) \right]\vec{U}_j = -\nabla(P_j)
-+ mu_j\nabla^2\vec{U}_j - \rho_j G(t) \vec{e}_z
+\rho_j \left[\partial_t + (\vec{U}_j\cdot\nabla) \right]\vec{U}_j = -\nabla(P_j)+ mu_j\nabla^2\vec{U}_j - \rho_j G(t) \vec{e}_z
 $$
 
 $$
-\tag{1.b}
-\label{eq1b}
 \nabla\cdot\vec{U}_j = 0
 $$
-
 where $\vec{U}=(u_j,v_j,w_j)$ and $G(t)=g (1 + F\cos(\omega t))$.
 
 We will consider a horizontally infinite plane, whose normal modes are
@@ -31,15 +25,11 @@ decoupled from the others. This is the approach followed by Benjamin \& Ursell
 [^2] for the ideal fluid case, and it remains valid for the viscous fluid
 equations in the present case. We now simply replace 
 $$
-  \tag{1.2}
-  \label{eq2}
-  \begin{aligned}
-    \label{eq2a}
-    w_j^*(\vec{x},z,t) &= \sin(\vec{k}\cdot\vec{x}) w_j (z,t) 
-    \\
-    \label{eq2b}
-    \zeta^*(\vec{x},t) &= \sin(\vec{k}\cdot\vec{x}) \zeta (t) 
-  \end{aligned}
+w_j^*(\vec{x},z,t) = \sin(\vec{k}\cdot\vec{x}) w_j (z,t) 
+$$
+
+$$
+\zeta^*(\vec{x},t) = \sin(\vec{k}\cdot\vec{x}) \zeta (t) 
 $$
 and the differential operator $\nabla^2_H$ by the algebraic one $-k^2$
 
