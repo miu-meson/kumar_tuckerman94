@@ -30,7 +30,7 @@ $$
 \begin{aligned}
 w_j^*(\vec{x},z,t) = \sin(\vec{k}\cdot\vec{x}) w_j (z,t) 
 \\
-\zeta^*(\vec{x},t) = \sin(\vec{k}\cdot\vec{x}) \zeta (t) 
+\zeta^*(\vec{x},t) = \sin(\vec{k}\cdot\vec{x}) \zeta (t)
 \end{aligned}
 $$
 
