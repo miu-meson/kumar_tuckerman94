@@ -8,12 +8,13 @@ interface between fluids 1 and 2 is $\zeta$ (surface tension coefficient
 $\gamma$). The equations of motion are given by
 
 $$
+\begin{aligned}
 \rho_j \left[\partial_t + (\vec{U}_j\cdot\nabla) \right]\vec{U}_j = -\nabla(P_j)+ mu_j\nabla^2\vec{U}_j - \rho_j G(t) \vec{e}_z
+\\
+\nabla\cdot\vec{U}_j = 0
+\end{aligned}
 $$
 
-$$
-\nabla\cdot\vec{U}_j = 0
-$$
 where $\vec{U}=(u_j,v_j,w_j)$ and $G(t)=g (1 + F\cos(\omega t))$.
 
 We will consider a horizontally infinite plane, whose normal modes are
@@ -26,21 +27,22 @@ decoupled from the others. This is the approach followed by Benjamin \& Ursell
 equations in the present case. We now simply replace 
 
 $$
+\begin{aligned}
 w_j^*(\vec{x},z,t) = \sin(\vec{k}\cdot\vec{x}) w_j (z,t) 
+\\
+\zeta^*(\vec{x},t) = \sin(\vec{k}\cdot\vec{x}) \zeta (t) 
+\end{aligned}
 $$
 
-$$
-\zeta^*(\vec{x},t) = \sin(\vec{k}\cdot\vec{x}) \zeta (t) 
-$$
 and the differential operator $\nabla^2_H$ by the algebraic one $-k^2$
 
 The complete linear stability problem reads
 
 $$
 \begin{aligned}
-[\partial_t - \nu_1 (\partial_{zz} - k^2)](\partial_zz - k^2) w_1 = 0, &&\text{ for } -h_1 \leq z < 0
+[\partial_t - \nu_1 (\partial_{zz} - k^2)](\partial_zz - k^2) w_1 = 0, &&&\text{ for } &-h_1 \leq z < 0
 \\
-[\partial_t - \nu_2 (\partial_{zz} - k^2)](\partial_zz - k^2) w_2 = 0, &&\text{ for } 0 \leq z < h_2
+[\partial_t - \nu_2 (\partial_{zz} - k^2)](\partial_zz - k^2) w_2 = 0, &&&\text{ for } &0 \leq z < h_2
 \end{aligned}
 $$
 
@@ -61,30 +63,25 @@ $$
 and the conditions at the interface are
 
 $$
-  \tag{1.5}
-  \label{eq5}
-  \begin{aligned}
-    w_1 - w_2 &= 0,
-    \\
-    \partial w_1 - \partial w_2 &= 0,
-    \\
-    \nu_1 (\partial_{zz} + k^2) w_1 - \nu_2 (\partial_{zz} + k^2) w_2 &= 0,
-    \\
-    [\rho_1 \partial_t - \nu_1 (\partial_{zz} - k^2) + 2 \nu_1 k^2] \partial_z w_1
-    -[\rho_2 \partial_t - \nu_2 (\partial_{zz} - k^2) + 2 \nu_2 k^2] \partial_z w_2
-    &= - [(\rho_1-\rho_2)g(t) - \sigma k^2] k^2 \zeta,
-  \end{aligned}
+\begin{aligned}
+w_1 - w_2 &= 0,
+\\
+\partial w_1 - \partial w_2 &= 0,
+\\
+\nu_1 (\partial_{zz} + k^2) w_1 - \nu_2 (\partial_{zz} + k^2) w_2 &= 0,
+\\
+[\rho_1 \partial_t - \nu_1 (\partial_{zz} - k^2) + 2 \nu_1 k^2] \partial_z w_1 - [\rho_2 \partial_t - \nu_2 (\partial_{zz} - k^2) + 2 \nu_2 k^2] \partial_z w_2 &= - [(\rho_1-\rho_2)g(t) - \sigma k^2] k^2 \zeta,
+\end{aligned}
 $$
+
 The kinematic condition at the interface reads
+
 $$
-  \tag{1.6}
-  \label{eq6}
-  \begin{aligned}
-    \partial \zeta - w  \vert_{z=0} = 0
-  \end{aligned}
+\partial \zeta - w  \vert_{z=0} = 0
 $$
-The above set of equations \eqref{eq3}-\eqref{eq6} constitute the full
-hydrodynamic system, which we shall refer to as FHS.
+
+The above set of equations constitute the full hydrodynamic system, which we
+shall refer to as FHS.
 
 ## References
 
