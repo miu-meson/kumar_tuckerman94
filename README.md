@@ -24,6 +24,7 @@ the Laplacian since the form of the equations is such that each mode is
 decoupled from the others. This is the approach followed by Benjamin \& Ursell
 [^2] for the ideal fluid case, and it remains valid for the viscous fluid
 equations in the present case. We now simply replace 
+
 $$
 w_j^*(\vec{x},z,t) = \sin(\vec{k}\cdot\vec{x}) w_j (z,t) 
 $$
@@ -35,29 +36,29 @@ and the differential operator $\nabla^2_H$ by the algebraic one $-k^2$
 
 The complete linear stability problem reads
 $$
-  \tag{1.3}
-  \label{eq3}
-  \begin{aligned}
-    [\partial_t - \nu_1 (\partial_{zz} - k^2)](\partial_zz - k^2) w_1 &= 0, && \text{ for } -h_1 \leq z < 0
-    \\
-    [\partial_t - \nu_2 (\partial_{zz} - k^2)](\partial_zz - k^2) w_2 &= 0, && \text{ for } 0 \leq z < h_2
-  \end{aligned}
+[\partial_t - \nu_1 (\partial_{zz} - k^2)](\partial_zz - k^2) w_1 = 0, && \text{ for } -h_1 \leq z < 0
 $$
+
+$$
+[\partial_t - \nu_2 (\partial_{zz} - k^2)](\partial_zz - k^2) w_2 = 0, && \text{ for } 0 \leq z < h_2
+$$
+
 The boundary conditions at the two plates are given by
+
 $$
-  \tag{1.4}
-  \label{eq4}
-  \begin{aligned}
-    w_1 &= 0, && \text{ for } z = -h_1
-    \\
-    w_2 &= 0, && \text{ for } z = h_2
-    \\
-    \partial_z w_1 &= 0, && \text{ for } z = -h_1
-    \\
-    \partial_z w_2 &= 0, && \text{ for } z = h_2
-  \end{aligned}
+\begin{aligned}
+w_1 &= 0, && \text{ for } z = -h_1
+\\
+w_2 &= 0, && \text{ for } z = h_2
+\\
+\partial_z w_1 &= 0, && \text{ for } z = -h_1
+\\
+\partial_z w_2 &= 0, && \text{ for } z = h_2
+\end{aligned}
 $$
+
 and the conditions at the interface are
+
 $$
   \tag{1.5}
   \label{eq5}
