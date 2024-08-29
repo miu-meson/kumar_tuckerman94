@@ -87,7 +87,7 @@ periodic in time with period $T$, and may therefore be expanded in the
 Fourier series
 
 $$
-  \tilde{w}_j = \sum_{n} w_{jn}(z) e^{in\omega t}
+\tilde{w}_j = \sum w_{jn}(z) \exp{(in\omega t)}
 $$
 
 The Floquet multipliers are eigenvalues of a real mapping: this implies that
