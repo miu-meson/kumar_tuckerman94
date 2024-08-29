@@ -8,16 +8,15 @@ interface between fluids 1 and 2 is $\zeta$ (surface tension coefficient
 $\gamma$). The equations of motion are given by
 
 $$
-\tag{1.1}
-\label{eq1}
-\begin{aligned}
+  \tag{1.1}
+  \label{eq1}
   \rho_j \left[
-  \partial_t + (\vec{U}_j\cdot\nabla) \right]\vec{U}_j &=
+  \partial_t + (\vec{U}_j\cdot\nabla) \right]\vec{U}_j =
   -\nabla(P_j) + \mu_j\nabla^2\vec{U}_j
   - \rho_j G(t) \vec{e}_z
-  \\
-	\nabla\cdot\vec{U}_j &= 0
-\end{aligned}
+$$
+$$
+	\nabla\cdot\vec{U}_j = 0
 $$
 where $\vec{U}=(u_j,v_j,w_j)$ and $G(t)=g (1 + F\cos(\omega t))$.
 
