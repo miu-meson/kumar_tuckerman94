@@ -9,9 +9,9 @@ $\gamma$). The equations of motion are given by
 
 $$
 \begin{aligned}
-\rho_j \left[\partial_t + (\vec{U}_j\cdot\nabla) \right]\vec{U}_j = -\nabla(P_j)+ mu_j\nabla^2\vec{U}_j - \rho_j G(t) \vec{e}_z
+\rho_j \left[\partial_t + (\vec{U}_j\cdot\nabla) \right]\vec{U}_j &= -\nabla(P_j)+ \mu_j\nabla^2\vec{U}_j - \rho_j G(t) \vec{e}_z
 \\
-\nabla\cdot\vec{U}_j = 0
+\nabla\cdot\vec{U}_j &= 0
 \end{aligned}
 $$
 
@@ -34,7 +34,7 @@ w_j^*(\vec{x},z,t) &= \sin(\vec{k}\cdot\vec{x}) w_j (z,t)
 \end{aligned}
 $$
 
-and the differential operator $\nabla^2_H$ by the algebraic one $-k^2$
+and the differential operator $\nabla^2_H$ by the algebraic one $-k^2$.
 
 The complete linear stability problem reads
 
