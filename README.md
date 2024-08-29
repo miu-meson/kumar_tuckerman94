@@ -72,6 +72,46 @@ $$
 The above set of equations constitute the full hydrodynamic system, which we
 shall refer to as FHS.
 
+## Solutions of Floquet form
+
+In standard fashion, we search for solutions of Floquet form, i.e.,
+$w_j(t)=w_j(t+nT)$ with integer $n$ and $T=2\pi/\omega$, 
+
+$$
+\begin{aligned}
+  w_j (z,t) &= e^{(i\alpha+\lambda)t} \tilde{w}_j (z, t \mod T)
+\end{aligned}
+$$
+
+where $i\alpha+\lambda$ is the Floquet exponent and
+$e^{(i\alpha + \lambda)T}$ is the Floquet multiplier. The function is
+periodic in time with period $T$, and may therefore be expanded in the
+Fourier series
+
+$$
+\begin{aligned}
+  \tilde{w}_j (z, t \mod T) = \sum_{n=-\infty}^{\infty} w_{jn}(z) e^{in\omega t}
+\end{aligned}
+$$
+
+The Floquet multipliers are eigenvalues of a real mapping: this implies that
+they are either real or complex-conjugate pairs. In addition, $\alpha$ is
+defined only modulo $\omega$, since integer multiples of $\omega$ may be
+absorbed into $\tilde{w}_j$. Hence, we restrict consideration to the range $0
+\leq \alpha < \omega$. The two cases $\alpha = 0$ and $\alpha = \omega/2$ are
+called harmonic and subharmonic, respectively, and correspond to positive or
+negative real Floquet multipliers, whereas $0 < \alpha < \omega/2$ corresponds
+to a complex Floquet multiplier.
+
+The relationship between Fourier modes with positive and negative $n$ depends on
+the value of $\alpha$. In the harmonic and subharmonic cases, $\tilde{w}_j$ must
+obey reality conditions $w_{j,-n} = w_{j,n}^*$ (harmonic) or $w_{j,-n} =
+w_{j,n-1}^*$ (harmonic) (subharmonic), so that the series may be rewritten in
+terms only of non-negative Fourier indices. Only the harmonic and subharmonic
+cases are relevant to this linear stability analysis : complex Floquet
+multipliers are always of magnitude less than or equal to one, and hence do not
+correspond to growing solutions. 
+
 ## References
 
 [^1]: Kumar K, Tuckerman LS. Parametric instability of the interface between two
