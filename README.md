@@ -5,29 +5,25 @@ two layers of immiscible and incompressible fluids: fluid 1 (density $\rho_1$,
 viscosity $\mu_1$) is defined between $z=z_0$ and $z=z_1$; fluid 2 (density
 $\rho_2$, viscosity $\mu_2$) is defined between $z=z_1$ and $z=z_2$. The
 interface between fluids 1 and 2 is $\zeta$ (surface tension coefficient
-$\gamma$). The equations of motion are given by
+$\gamma$). The equations of motion are given by the incompressible Navier-Stokes
+equations. We will consider a horizontally infinite plane, whose normal modes
+are trigonometric functions, e.g. $\sin (\vec{k}\cdot\vec{x} )$. The horizontal
+wave number $\vec{k}=k_x\vec{i} + k_y\vec{j}$, where $k^2 = k_x^2 + k_y^2$, can
+take any real value. We can expand the fields in terms of horizontal normal
+modes of the Laplacian since the form of the equations is such that each mode is
+decoupled from the others. This is the approach followed by Benjamin \& Ursell
+[^2] for the ideal fluid case, and it remains valid for the viscous fluid
+equations in the present case. We now simply expand  
 
 $$
 \begin{aligned}
-\rho_j \left[\partial_t + (\vec{U}_j\cdot\nabla) \right]\vec{U}_j &= -\nabla(P_j)+ \mu_j\nabla^2\vec{U}_j - \rho_j G(t) \vec{e}_z
+\tilde{w}_j(\vec{x},z,t) &= \sin(\vec{k}\cdot\vec{x}) w_j (z,t) 
 \\
-\nabla\cdot\vec{U}_j &= 0
+\tilde{\zeta}(\vec{x},t) &= \sin(\vec{k}\cdot\vec{x}) \zeta (t)
 \end{aligned}
 $$
 
-where $\vec{U}=(u_j,v_j,w_j)$ and $G(t)=g (1 + F\cos(\omega t))$.
-
-We will consider a horizontally infinite plane, whose normal modes are
-trigonometric functions, e.g. $\sin (\vec{k}\cdot\vec{x} )$. The horizontal wave
-number $\vec{k}=k_x\vec{i} + k_y\vec{j}$, where $k^2 = k_x^2 + k_y^2$, can take
-any real value. We can expand the fields in terms of horizontal normal modes of
-the Laplacian since the form of the equations is such that each mode is
-decoupled from the others. This is the approach followed by Benjamin \& Ursell
-[^2] for the ideal fluid case, and it remains valid for the viscous fluid
-equations in the present case. We now simply replace 
-$w_j^*(\vec{x},z,t) =\sin(\vec{k}\cdot\vec{x}) w_j (z,t)$, 
-$\zeta^*(\vec{x},t) =\sin(\vec{k}\cdot\vec{x}) \zeta (t)$, and the differential 
-operator $\nabla^2_H$ by the algebraic one $-k^2$.
+and the differential operator $\nabla^2_H$ by the algebraic one $-k^2$.
 
 The complete linear stability problem reads
 
