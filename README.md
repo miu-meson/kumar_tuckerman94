@@ -26,13 +26,12 @@ decoupled from the others. This is the approach followed by Benjamin \& Ursell
 [^2] for the ideal fluid case, and it remains valid for the viscous fluid
 equations in the present case. We now simply replace 
 
-$$
 \begin{aligned}
 w_j^*(\vec{x},z,t) = \sin(\vec{k}\cdot\vec{x}) w_j (z,t) 
 \\
 \zeta^*(\vec{x},t) = \sin(\vec{k}\cdot\vec{x}) \zeta (t)
 \end{aligned}
-$$
+
 
 and the differential operator $\nabla^2_H$ by the algebraic one $-k^2$
 
