@@ -17,9 +17,9 @@ equations in the present case. We now simply expand
 
 $$
 \begin{aligned}
-\tilde{w}_j(\vec{x},z,t) &= \sin(\vec{k}\cdot\vec{x}) w_j (z,t) 
+w_j(\vec{x},z,t) &= \sin(\vec{k}\cdot\vec{x}) w_j (z,t) 
 \\
-\tilde{\zeta}(\vec{x},t) &= \sin(\vec{k}\cdot\vec{x}) \zeta (t)
+\zeta(\vec{x},t) &= \sin(\vec{k}\cdot\vec{x}) \zeta (t)
 \end{aligned}
 $$
 
@@ -78,9 +78,7 @@ In standard fashion, we search for solutions of Floquet form, i.e.,
 $w_j(t)=w_j(t+nT)$ with integer $n$ and $T=2\pi/\omega$, 
 
 $$
-\begin{aligned}
-  w_j (z,t) &= e^{(i\alpha+\lambda)t} \tilde{w}_j (z, t \mod T)
-\end{aligned}
+w_j (z,t) = e^{(i\alpha+\lambda)t} \tilde{w}_j (z, t \mod T)
 $$
 
 where $i\alpha+\lambda$ is the Floquet exponent and
@@ -89,9 +87,7 @@ periodic in time with period $T$, and may therefore be expanded in the
 Fourier series
 
 $$
-\begin{aligned}
-  \tilde{w}_j (z, t \mod T) = \sum_{n=-\infty}^{\infty} w_{jn}(z) e^{in\omega t}
-\end{aligned}
+  \tilde{w}_j = \sum_{n} w_{jn}(z) e^{in\omega t}
 $$
 
 The Floquet multipliers are eigenvalues of a real mapping: this implies that
