@@ -1,8 +1,3 @@
----
-header-includes: 
-  - '\renewcommand*{\vec}[1]{\boldsymbol{#1}}'
----
-
 # Parametric instability of the interface between two fluids
 
 We briefly describe an implementation of Kumar \& Tuckerman [^1]. We consider
