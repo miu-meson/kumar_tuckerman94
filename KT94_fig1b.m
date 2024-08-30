@@ -11,7 +11,7 @@ h_dim = [1000, 1000];                         % layer heights, m
 gamma_dim = 2.181e-6;                         % interfacial tension, N/m²
 f_dim = 100;                                  % frequency, Hz
 omega_dim = 2*pi*f_dim;                       % frequency, rad/s
-m_max = 16000;
+m_max = 9600;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 N = 20;                                       % Trunctation Fourier series
@@ -27,9 +27,7 @@ hold on
 plot(k0,k0*0+omega_dim)
 hold off
 
-
 [a_harmonic, a_subharmonic] = sweep_over_k(w_dim, N, omega_dim, nu_dim, mu_dim, rho_dim, g_dim, gamma_dim, h_dim, m_max);
-
 
 figure(2)
 k = a_harmonic(:,1);

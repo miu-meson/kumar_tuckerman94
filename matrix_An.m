@@ -1,22 +1,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Assemble the full hydrodynamic system matrix 
+%% Assemble the full hydrodynamic system matrix
 % Taken from the appendix B of Kumar & Tuckerman (1994).
-% 
+%
 % The only one of the equations which couples the different Fourier modes is the
 % pressure jump condition (3.9)
 %
-% Δ[ρ{σ + i(ɑ + nω)} + 3μk²]∂_z(w_n) 
+% Δ[ρ{σ + i(ɑ + nω)} + 3μk²]∂_z(w_n)
 % - [Δμ ∂_zzz(w_n)] + (Δ[ρ]g - γk²) ζ_n = Δ[ρ] k² (1/2) a (ζ_{n+1} + ζ_{n-1})
 %
-% where : 
-% - ρ is the density 
+% where :
+% - ρ is the density
 % - μ is the viscosity
 % - k is the wavenumber
 % - g is the gravity
 % - γ is the surface tension coefficient
 % - σ + i(ɑ + nω) are the Floquet exponents
-% 
-% Note that ∂_z(w_n) and ∂_zzz(w_n) are also functions of ζ_n through 
+%
+% Note that ∂_z(w_n) and ∂_zzz(w_n) are also functions of ζ_n through
 % the kinematic condition
 %
 %   w_{1n}(z=z1) = w_{2n}(z=z2) = [σ + i(ɑ + nω)] ζ_n
@@ -41,18 +41,28 @@ function [Dn] = matrix_An(sigma, alpha, n, omega, k, nu, mu, rho, g, gamma, h)
   exp_k_z1_plus = exp(k * interface_surface);
   exp_k_z1_minus = exp(-k * interface_surface);
 
-  eps = 1e-3;
+  eps = 1e-12;
   if fexp ~= 0 % general case
     % Assemble Full Hydrodynamic System
     lhs = fhs_general(k, mu, h, q1n, q2n);
-
+    
     if (rcond(lhs) > eps)
-			rhs = zeros(8, 1);
+      rhs = zeros(8, 1);
       rhs(1) = fexp;
-
-			% Solve Coefficients a1n, b1n, c1n, d1n, a2n, b2n, c2n, d2n, 
-      coefficients = lhs \ rhs;
-
+      
+      % Solve Coefficients a1n, b1n, c1n, d1n, a2n, b2n, c2n, d2n,
+      % Row and Column Scaling
+      D1 = diag(1 ./ sqrt(sum(abs(lhs), 2)));
+      D2 = diag(1 ./ sqrt(sum(abs(lhs'), 2)));
+      A_scaled = D1 * lhs * D2;
+      b_scaled = D1 * rhs;
+      
+      % Solve using GMRES with LU preconditioner and scaling
+      [x_scaled, flag] = gmres(A_scaled, b_scaled, 8, 1e-6, 8);
+      
+      % Unscale the solution
+      coefficients = D2 * x_scaled;
+      
       % Compute derivatives
       exp_q1n_z1_plus = exp( q1n * interface_surface);
       exp_q2n_z1_plus = exp( q2n * interface_surface);
@@ -64,65 +74,95 @@ function [Dn] = matrix_An(sigma, alpha, n, omega, k, nu, mu, rho, g, gamma, h)
       dz2 = ([k, -k, q2n, -q2n] .* exp_terms_z1_q2) * coefficients(5:8);
       dzzz1 = ([k^3, -k^3, q1n^3, -q1n^3] .* exp_terms_z1_q1) * coefficients(1:4);
       dzzz2 = ([k^3, -k^3, q2n^3, -q2n^3] .* exp_terms_z1_q2) * coefficients(5:8);
-		else 
+    else
       lhs = fhs_general_deep(k, mu, q1n, q2n);
-
+      
       % limit to infinite layer
       rhs = zeros(4, 1);
       rhs(1) = fexp;
-			
+      
       % Solve Coefficients a1n, c1n, b2n, and d2n
-			coefficients = lhs \ rhs;
-			
+      % Row and Column Scaling
+      D1 = diag(1 ./ sqrt(sum(abs(lhs), 2)));
+      D2 = diag(1 ./ sqrt(sum(abs(lhs'), 2)));
+      A_scaled = D1 * lhs * D2;
+      b_scaled = D1 * rhs;
+      
+      % Solve using GMRES with LU preconditioner and scaling
+      [x_scaled, flag] = gmres(A_scaled, b_scaled, 4, 1e-6, 4);
+      
+      % Unscale the solution
+      coefficients = D2 * x_scaled;
+      
       % Compute derivatives
       dz1 = [ k,  q1n] * coefficients(1:2);
       dz2 = [-k, -q2n] * coefficients(3:4);
       dzzz1 = [ k^3, q1n^3,] * coefficients(1:2);
       dzzz2 = [-k^3, -q2n^3] * coefficients(3:4);
-	  end
-
+    end
+    
   else % special case
     % Assemble Full Hydrodynamic System for the special case
     lhs = fhs_special(k, mu, h);
     
     if (rcond(lhs) > eps)
-			rhs = zeros(8, 1);
+      rhs = zeros(8, 1);
       rhs(1) = fexp;
-
-			% Solve Coefficients a1n, b1n, c1n, d1n, a2n, b2n, c2n, d2n, 
-      coefficients = lhs \ rhs;
-
+      
+      % Solve Coefficients a1n, b1n, c1n, d1n, a2n, b2n, c2n, d2n,
+      % Row and Column Scaling
+      D1 = diag(1 ./ sqrt(sum(abs(lhs), 2)));
+      D2 = diag(1 ./ sqrt(sum(abs(lhs'), 2)));
+      A_scaled = D1 * lhs * D2;
+      b_scaled = D1 * rhs;
+            
+      % Solve using GMRES with LU preconditioner and scaling
+      [x_scaled, flag] = gmres(A_scaled, b_scaled, 8, 1e-6, 8);
+            
+      % Unscale the solution
+      coefficients = D2 * x_scaled;      
+      
       % Compute derivatives dw1/dz, and d³w1/dz³
       exp_terms_z1 = [exp_k_z1_plus, exp_k_z1_minus, exp_k_z1_plus, exp_k_z1_minus];
       dz1 = ([k, -k, (1 + k * interface_surface), (1 - k * interface_surface)] .* exp_terms_z1) * coefficients(1:4);
       dz2 = ([k, -k, (1 + k * interface_surface), (1 - k * interface_surface)] .* exp_terms_z1) * coefficients(5:8);
       dzzz1 = ([k^3, -k^3, 3 * (k^2) + (k^3) * interface_surface, 3 * (k^2) - (k^3) * interface_surface] .* exp_terms_z1) * coefficients(1:4);
       dzzz2 = ([k^3, -k^3, 3 * (k^2) + (k^3) * interface_surface, 3 * (k^2) - (k^3) * interface_surface] .* exp_terms_z1) * coefficients(5:8);
-
-		else 
+      
+    else
       lhs = fhs_special_deep(k, mu);
-
+      
       % limit to infinite layer
       rhs = zeros(4, 1);
       rhs(1) = fexp;
-			
+      
       % Solve Coefficients a1n, c1n, b2n, and d2n
-			coefficients = lhs \ rhs;
-
+      % Row and Column Scaling
+      D1 = diag(1 ./ sqrt(sum(abs(lhs), 2)));
+      D2 = diag(1 ./ sqrt(sum(abs(lhs'), 2)));
+      A_scaled = D1 * lhs * D2;
+      b_scaled = D1 * rhs;
+            
+      % Solve using GMRES with LU preconditioner and scaling
+      [x_scaled, flag] = gmres(A_scaled, b_scaled, 4, 1e-6, 4);
+            
+      % Unscale the solution
+      coefficients = D2 * x_scaled;
+      
       % Compute derivatives dw1/dz, and d³w1/dz³
       dz1 = [ k, (1 + k * interface_surface)] * coefficients(1:2);
       dz2 = [-k, (1 - k * interface_surface)] * coefficients(3:4);
       dzzz1 = [ k^3, 3 * (k^2) + (k^3) * interface_surface] * coefficients(1:2);
       dzzz2 = [-k^3, 3 * (k^2) - (k^3) * interface_surface] * coefficients(3:4);
       
-	  end
-
+    end
+    
     
   end
 
   % Assemble Matrix
   Dn = ((rho(2) * fexp + 3 * mu(2) * k^2) * dz2 - mu(2) * dzzz2 - ...
-        (rho(1) * fexp + 3 * mu(1) * k^2) * dz1 + mu(1) * dzzz1 + ...
-        ((rho(2) - rho(1)) * g - gamma * k^2) * k^2);
+    (rho(1) * fexp + 3 * mu(1) * k^2) * dz1 + mu(1) * dzzz1 + ...
+    ((rho(2) - rho(1)) * g - gamma * k^2) * k^2);
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

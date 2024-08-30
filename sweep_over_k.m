@@ -16,6 +16,10 @@ function [results_harmonic, results_subharmonic] = sweep_over_k(w_dim, N, omega,
   results_subharmonic = [];
 
   for m = 1:m_max
+    if (mod(m,100) == 0)
+      m
+    end
+
     k = m * pi / w_dim;
     
     sigma_values = 0;%linspace(0, 2, num_sigma_values) * g;
